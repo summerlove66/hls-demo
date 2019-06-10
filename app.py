@@ -1,4 +1,5 @@
 from flask import Flask ,send_from_directory ,render_template
+from urllib.parse import unquote_plus
 import os
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ def  get_ts(video_name ,idx):
 
 @app.route("/video/<video_name>")
 def get_video_path(video_name):
-    return render_template("player.html" ,m3u8_url = "/" +video_name +"/index.m3u8")
+    return render_template("player.html" ,m3u8_url = "/" +video_name +"/index.m3u8",video_name =unquote_plus(video_name) )
 
 
 if __name__ == '__main__':
